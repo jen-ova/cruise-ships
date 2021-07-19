@@ -1,7 +1,7 @@
 /* globals describe it expect */
 const Ship = require('../src/Ship.js');
 
-describe("Ship", () =>{
+describe("Ship", () => {
     let Titanic;
     beforeEach(() => {
         Titanic = new Ship("Titanic", "Belfast");
@@ -13,5 +13,13 @@ describe("Ship", () =>{
 
     it("has a starting point", () => {
         expect(Titanic.startingPort).toBe("Belfast");
+    });
+});
+
+describe("setSail", () => {
+    it("can set sail", () => {
+        const ship = new Ship("Belfast");
+        ship.setSail();
+        expect(ship.startingPort).toBeFalsy();
     });
 });
