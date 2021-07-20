@@ -2,16 +2,16 @@
 const Port = require('../src/Port');
 
 describe("constructor", () => {
-    let Astapor;
+    let astapor;
     beforeEach(() => {
-        Astapor = new Port("Astapor");
+        astapor = new Port("Astapor");
     });
 
     it("returns an object", () => {
-        expect(Astapor).toBeInstanceOf(Port);
+        expect(astapor).toBeInstanceOf(Port);
     });
 
     it("checks the port has a name", () => {
-        expect(Astapor.portName).toBe("Astapor");
+        expect(astapor.portName).toBe("Astapor");
     });
 });
