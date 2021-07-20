@@ -15,6 +15,10 @@ class Ship {
 			return "Bon Voyage!"
 		}
     };
+
+    dock(port) {
+        this.currentPort = port;
+    }
 };
 
 module.exports = Ship;
