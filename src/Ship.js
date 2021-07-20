@@ -1,12 +1,19 @@
 class Ship {
-    constructor(name, startingPort) {
+    constructor(name, port) {
         this.shipName = name;
-        this.startingPort = startingPort;
+        this.startingPort = port;
+        this.currentPort = this.startingPort;
+        this.previousPort = "";
     }
 
     setSail() {
-        return `${this.name} has departed from ${this.startingPort}.`
-
+        if (this.currentPort === null) {
+			return "You are already at sea"
+		} else {
+			this.previousPort = this.currentPort;
+			this.currentPort = null;
+			return "Bon Voyage!"
+		}
     };
 };
 

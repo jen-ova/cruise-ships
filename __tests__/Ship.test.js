@@ -1,25 +1,31 @@
 /* globals describe it expect */
-const Ship = require('../src/Ship.js');
+const Ship = require('../src/Ship');
+const Port = require('../src/Port');
 
 describe("Ship", () => {
-    let Titanic;
+    let balerion;
     beforeEach(() => {
-        Titanic = new Ship("Titanic", "Belfast");
+        qarth = new Port("Qarth");
+        balerion = new Ship("Balerion", qarth);
     });
 
     it("can be instantiated", () => {
-        expect(Titanic).toBeInstanceOf(Object);
+        expect(balerion).toBeInstanceOf(Ship); 
     });
 
     it("has a starting point", () => {
-        expect(Titanic.startingPort).toBe("Belfast");
+        expect(balerion.startingPort).toBe(qarth);
     });
 });
 
 describe("setSail", () => {
     it("can set sail", () => {
-        const ship = new Ship("Belfast");
-        ship.setSail();
-        expect(ship.startingPort).toBeFalsy();
+        const qarth = new Port("Qarth");
+        const balerion = new Ship("Balerion", qarth);
+		balerion.setSail();
+		expect(balerion.previousPort).toBe(qarth);
+		expect(balerion.currentPort).toBeNull;
     });
 });
+
+// ship will sail to Astapor
