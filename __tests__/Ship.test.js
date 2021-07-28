@@ -3,7 +3,7 @@ const Ship = require('../src/Ship');
 const Port = require('../src/Port');
 const Itinerary = require('../src/Itinerary');
 
-describe("Ship", () => {
+describe("constructor", () => {
     let balerion, qarth, itinerary;
     beforeEach(() => {
         qarth = new Port("Qarth");
@@ -25,12 +25,15 @@ describe("Ship", () => {
 });
 
 describe("setSail", () => {
+    let qarth, astapor, itinerary, balerion;
+    beforeEach(() => {
+        qarth = new Port("Qarth");
+        astapor = new Port("Astapor");
+        itinerary = new Itinerary([qarth, astapor]);
+        balerion = new Ship("Balerion", itinerary);
+    });
+
     it("can set sail", () => {
-        const qarth = new Port("Qarth");
-        const astapor = new Port("Astapor");
-        const itinerary = new Itinerary([qarth, astapor]);
-        const balerion = new Ship("Balerion", itinerary);
-        
 		balerion.setSail();
 
 		expect(balerion.currentPort).toBeFalsy();
@@ -39,11 +42,6 @@ describe("setSail", () => {
     });
 
     it("can dock at a different port", () => {
-        const qarth = new Port("Qarth");
-        const astapor = new Port("Astapor");
-        const itinerary = new Itinerary([qarth, astapor]);
-        const balerion = new Ship("Balerion", itinerary);
-
         balerion.setSail();
         balerion.dock();
 
@@ -52,16 +50,9 @@ describe("setSail", () => {
     });
 
     it("can't set sail further than the last port on the itinerary", () => {
-        const qarth = new Port("Qarth");
-        const astapor = new Port("Astapor");
-        const itinerary = new Itinerary([qarth, astapor]);
-        const balerion = new Ship("Balerion", itinerary);
-
         balerion.setSail();
         balerion.dock();
 
         expect(() => balerion.setSail()).toThrowError("End of itinerary reached");
     });
 });
-
-// ship will sail to Astapor

@@ -17,21 +17,21 @@ describe("constructor", () => {
 });
 
 describe("adding and removing ships", () => {
-    it("can add a ship", () => {
-        const qarth = new Port("Qarth");
-        const balerion = {};
+    let qarth, balerion, vhagar, meraxes;
+    beforeEach(() => {
+        qarth = new Port("Qarth");
+        balerion = {};
+        vhagar = {};
+        meraxes = {};
+    });
 
+    it("can add a ship", () => {
         qarth.addShip(balerion);
 
         expect(qarth.ships).toContain(balerion);
     });
 
     it("can remove a ship", () => {
-        const qarth = new Port("Qarth");
-        const balerion = {};
-        const vhagar = {};
-        const meraxes = {};
-
         qarth.addShip(balerion);
         qarth.addShip(vhagar);
         qarth.addShip(meraxes);
