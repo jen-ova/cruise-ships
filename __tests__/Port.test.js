@@ -1,4 +1,3 @@
-/* globals describe it expect */
 const Port = require('../src/Port');
 
 describe("constructor", () => {

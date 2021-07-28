@@ -9,11 +9,9 @@ describe("constructor", () => {
             name: "Qarth",
             ships: []
         };
-
         itinerary = {
             ports: [qarth]
         };
-    
         balerion = new Ship("Balerion", itinerary);
     });
 
@@ -40,18 +38,15 @@ describe("setSail", () => {
             name: "Qarth",
             ships: []
         };
-
         astapor = {
             addShip: jest.fn(),
             removeShip: jest.fn(),
             name: "Astapor",
             ships: []
         };
-
         itinerary = {
             ports: [qarth, astapor]
         };
-
         balerion = new Ship("Balerion", itinerary);
     });
 
@@ -68,7 +63,7 @@ describe("setSail", () => {
         balerion.setSail();
         balerion.dock();
 
-        expect(() => balerion.setSail()).toThrowError("End of itinerary reached");
+        expect(() => balerion.setSail()).toThrowError("End of itinerary reached - the Unsullied are free!");
     });
 });
 
@@ -81,18 +76,15 @@ describe("dock", () => {
             name: "Qarth",
             ships: []
         };
-
         astapor = {
             addShip: jest.fn(),
             removeShip: jest.fn(),
             name: "Astapor",
             ships: []
         };
-
         itinerary = {
             ports: [qarth, astapor]
         };
-
         balerion = new Ship("Balerion", itinerary);
     });
 

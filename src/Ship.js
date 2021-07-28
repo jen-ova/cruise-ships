@@ -12,7 +12,7 @@ class Ship {
         const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
 
         if (currentPortIndex === (itinerary.ports.length - 1)) {
-             throw new Error('End of itinerary reached');
+             throw new Error("End of itinerary reached - the Unsullied are free!");
          }
 
         this.previousPort = this.currentPort;
