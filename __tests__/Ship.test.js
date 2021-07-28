@@ -1,12 +1,15 @@
 /* globals describe it expect */
 const Ship = require('../src/Ship');
-const Port = require('../src/Port');
 const Itinerary = require('../src/Itinerary');
 
 describe("constructor", () => {
     let balerion, qarth, itinerary;
     beforeEach(() => {
-        qarth = new Port("Qarth");
+        qarth = {
+            addShip: jest.fn(),
+            name: "Qarth",
+            ships: []
+        };
         itinerary = new Itinerary([qarth]);
         balerion = new Ship("Balerion", itinerary);
     });
@@ -16,7 +19,8 @@ describe("constructor", () => {
     });
 
     it("gets added to port on instantiation", () => {
-        expect(qarth.ships).toContain(balerion);
+        expect(qarth.addShip).toHaveBeenCalledWith(balerion);
+        expect(qarth.addShip).toHaveBeenCalledTimes(1);
     }); 
 
     it("has a starting point", () => {
@@ -27,8 +31,20 @@ describe("constructor", () => {
 describe("setSail", () => {
     let qarth, astapor, itinerary, balerion;
     beforeEach(() => {
-        qarth = new Port("Qarth");
-        astapor = new Port("Astapor");
+        qarth = {
+            addShip: jest.fn(),
+            removeShip: jest.fn(),
+            name: "Qarth",
+            ships: []
+        };
+
+        astapor = {
+            addShip: jest.fn(),
+            removeShip: jest.fn(),
+            name: "Astapor",
+            ships: []
+        };
+
         itinerary = new Itinerary([qarth, astapor]);
         balerion = new Ship("Balerion", itinerary);
     });
@@ -37,8 +53,9 @@ describe("setSail", () => {
 		balerion.setSail();
 
 		expect(balerion.currentPort).toBeFalsy();
-		expect(balerion.previousPort).toBe(qarth);
-        expect(qarth.ships).not.toContain(balerion);
+		expect(qarth.removeShip).toHaveBeenCalledWith(balerion);
+        expect(qarth.removeShip).toHaveBeenCalledTimes(1);
+
     });
 
     it("can dock at a different port", () => {
@@ -46,7 +63,9 @@ describe("setSail", () => {
         balerion.dock();
 
         expect(balerion.currentPort).toBe(astapor);
-        expect(astapor.ships).toContain(balerion);
+        expect(astapor.addShip).toHaveBeenCalledWith(balerion);
+        expect(astapor.addShip).toHaveBeenCalledTimes(1);
+
     });
 
     it("can't set sail further than the last port on the itinerary", () => {
