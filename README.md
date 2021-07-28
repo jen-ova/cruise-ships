@@ -28,25 +28,51 @@ npm install
 npm run test
 ```
 
+## How to
+1. Open your terminal and start up Node REPL
+```sh
+node
+```
+
+2. Import constructors
+```sh
+.load src/ship.js
+.load src/port.js
+.load src/itinerary.js
+```
+
+3. Create ports for Daenerys to sail between
+```sh
+const qarth = new Port("Qarth")
+const astapor = new Port("Astapor")
+```
+
+4. Create an itinerary for the crusade
+```sh
+const itinerary = new Itinerary([qarth, astapor])
+```
+
+5. Create a ship for Daenerys and the Dothraki to sail on
+```sh
+const balerion = new Ship("Balerion", itinerary)
+```
+
+6. Set sail to Astapor
+```sh
+balerion.setSail()
+```
+
+7. Dock at Astapor to free the Unsullied
+```sh
+balerion.dock()
+```
+
 ## Author
 
 👤 **Jen Stewart**
 
 * Github: [@jen-ova](https://github.com/jen-ova)
 * LinkedIn: [@jennifer-stewart-403184113](https://linkedin.com/in/jennifer-stewart-403184113)
-
-## 🤝 Contributing
-
-Contributions, issues and feature requests are welcome!<br />Feel free to check [issues page](https://github.com/jen-ova/cruise-ships/issues). You can also take a look at the [contributing guide](https://github.com/jen-ova/cruise-ships/blob/master/CONTRIBUTING.md).
-
-## Show your support
-
-Give a ⭐️ if this project helped you!
-
-## 📝 License
-
-Copyright © 2021 [Jen Stewart](https://github.com/jen-ova).<br />
-This project is [ISC](https://github.com/jen-ova/cruise-ships/blob/master/LICENSE) licensed.
 
 ***
 _This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
