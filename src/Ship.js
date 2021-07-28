@@ -1,23 +1,31 @@
 class Ship {
-    constructor(name, port) {
+    constructor(name, itinerary) {
         this.shipName = name;
-        this.startingPort = port;
-        this.currentPort = this.startingPort;
-        this.previousPort = "";
+        this.itinerary = itinerary;
+        this.currentPort = itinerary.ports[0];
+        this.previousPort = null;
+        this.currentPort.addShip(this);
     }
 
     setSail() {
-        if (this.currentPort === null) {
-			return "You are already at sea"
-		} else {
-			this.previousPort = this.currentPort;
-			this.currentPort = null;
-			return "Bon Voyage!"
-		}
+        const itinerary = this.itinerary;
+        const currentPortIndex = itinerary.ports.indexOf(this.currentPort);
+
+        if (currentPortIndex === (itinerary.ports.length - 1)) {
+             throw new Error('End of itinerary reached');
+         }
+
+        this.previousPort = this.currentPort;
+        this.currentPort = null;
+        this.previousPort.removeShip(this);
     };
 
-    dock(port) {
-        this.currentPort = port;
+    dock() {
+        const itinerary = this.itinerary;
+        const previousPortIndex= itinerary.ports.indexOf(this.previousPort);
+
+        this.currentPort= itinerary.ports[previousPortIndex + 1];
+        this.currentPort.addShip(this);
     }
 };
 

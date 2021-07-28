@@ -2,9 +2,11 @@ const Itinerary = require('../src/Itinerary');
 const Port = require('../src/Port');
 
 describe("constructor", () => {
-    let itinerary;
+    let qarth, astapor, itinerary;
     beforeEach(() => {
-        itinerary = new Itinerary("Daenerys' Crusade");
+        qarth = new Port("Qarth");
+        astapor = new Port("Astapor");
+        itinerary = new Itinerary([qarth, astapor]);
     });
 
     it("returns an object", () => {
@@ -12,12 +14,6 @@ describe("constructor", () => {
     });
 
     it("can have ports", () => {
-        const qarth = new Port("Qarth");
-        const astapor = new Port("Astapor");
-
-        const itinerary = new Itinerary([qarth, astapor]);
-
         expect(itinerary.ports).toEqual([qarth, astapor]);
-
     });
 });
