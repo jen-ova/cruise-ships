@@ -7,9 +7,6 @@
   <a href="https://github.com/jen-ova/cruise-ships/graphs/commit-activity" target="_blank">
     <img alt="Maintenance" src="https://img.shields.io/badge/Maintained%3F-yes-green.svg" />
   </a>
-  <a href="https://github.com/jen-ova/cruise-ships/blob/master/LICENSE" target="_blank">
-    <img alt="License: ISC" src="https://img.shields.io/github/license/jen-ova/Cruise Ships" />
-  </a>
 </p>
 
 > Part of the MCR Codes Programming Fundamentals module, exploring Object Orientated Programming
@@ -73,6 +70,3 @@ balerion.dock()
 
 * Github: [@jen-ova](https://github.com/jen-ova)
 * LinkedIn: [@jennifer-stewart-403184113](https://linkedin.com/in/jennifer-stewart-403184113)
-
-***
-_This README was generated with ❤️ by [readme-md-generator](https://github.com/kefranabg/readme-md-generator)_
