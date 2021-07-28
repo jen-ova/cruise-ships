@@ -1,6 +1,5 @@
 /* globals describe it expect */
 const Ship = require('../src/Ship');
-const Itinerary = require('../src/Itinerary');
 
 describe("constructor", () => {
     let balerion, qarth, itinerary;
@@ -10,7 +9,11 @@ describe("constructor", () => {
             name: "Qarth",
             ships: []
         };
-        itinerary = new Itinerary([qarth]);
+
+        itinerary = {
+            ports: [qarth]
+        };
+    
         balerion = new Ship("Balerion", itinerary);
     });
 
@@ -45,7 +48,10 @@ describe("setSail", () => {
             ships: []
         };
 
-        itinerary = new Itinerary([qarth, astapor]);
+        itinerary = {
+            ports: [qarth, astapor]
+        };
+
         balerion = new Ship("Balerion", itinerary);
     });
 
@@ -58,6 +64,38 @@ describe("setSail", () => {
 
     });
 
+    it("can't set sail further than the last port on the itinerary", () => {
+        balerion.setSail();
+        balerion.dock();
+
+        expect(() => balerion.setSail()).toThrowError("End of itinerary reached");
+    });
+});
+
+describe("dock", () => {
+    let qarth, astapor, itinerary, balerion;
+    beforeEach(() => {
+        qarth = {
+            addShip: jest.fn(),
+            removeShip: jest.fn(),
+            name: "Qarth",
+            ships: []
+        };
+
+        astapor = {
+            addShip: jest.fn(),
+            removeShip: jest.fn(),
+            name: "Astapor",
+            ships: []
+        };
+
+        itinerary = {
+            ports: [qarth, astapor]
+        };
+
+        balerion = new Ship("Balerion", itinerary);
+    });
+
     it("can dock at a different port", () => {
         balerion.setSail();
         balerion.dock();
@@ -66,12 +104,5 @@ describe("setSail", () => {
         expect(astapor.addShip).toHaveBeenCalledWith(balerion);
         expect(astapor.addShip).toHaveBeenCalledTimes(1);
 
-    });
-
-    it("can't set sail further than the last port on the itinerary", () => {
-        balerion.setSail();
-        balerion.dock();
-
-        expect(() => balerion.setSail()).toThrowError("End of itinerary reached");
     });
 });
