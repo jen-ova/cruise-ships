@@ -1,11 +1,10 @@
 const Itinerary = require('../src/Itinerary');
-const Port = require('../src/Port');
 
 describe("constructor", () => {
     let qarth, astapor, itinerary;
     beforeEach(() => {
-        qarth = new Port("Qarth");
-        astapor = new Port("Astapor");
+        qarth = jest.fn();
+        astapor = jest.fn();
         itinerary = new Itinerary([qarth, astapor]);
     });
 

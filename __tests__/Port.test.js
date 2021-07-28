@@ -20,9 +20,9 @@ describe("adding and removing ships", () => {
     let qarth, balerion, vhagar, meraxes;
     beforeEach(() => {
         qarth = new Port("Qarth");
-        balerion = {};
-        vhagar = {};
-        meraxes = {};
+        balerion = jest.fn();
+        vhagar = jest.fn();
+        meraxes = jest.fn();
     });
 
     it("can add a ship", () => {
